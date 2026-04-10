@@ -606,6 +606,136 @@
     }
     .toast.show { transform: translateY(0); opacity: 1; }
 
+    /* ===== タブ ===== */
+    .tab-bar {
+      display: flex;
+      gap: 4px;
+      background: var(--card);
+      border-radius: var(--radius) var(--radius) 0 0;
+      border-bottom: 2px solid var(--border);
+      padding: 0 4px;
+      box-shadow: var(--shadow);
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      padding: 14px 20px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--sub);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color .15s;
+      white-space: nowrap;
+    }
+    .tab-btn:hover { color: var(--blue); }
+    .tab-btn.active { color: var(--blue); border-bottom-color: var(--blue); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: flex; flex-direction: column; gap: 20px; }
+
+    /* ===== 使い方ページ ===== */
+    .help-hero {
+      background: linear-gradient(135deg, #1a3a5c 0%, #2980b9 100%);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      text-align: center;
+    }
+    .help-hero h2 { font-size: 22px; font-weight: 900; margin-bottom: 8px; }
+    .help-hero p  { font-size: 14px; opacity: .85; }
+
+    .help-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .help-item {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .help-item-head {
+      background: var(--blue-bg);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--blue);
+    }
+    .help-item-head .h-icon {
+      font-size: 22px;
+      width: 32px;
+      text-align: center;
+    }
+    .help-item-body {
+      padding: 14px 16px;
+      font-size: 13px;
+      line-height: 1.9;
+      color: #444;
+    }
+    .help-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .help-step:last-child { margin-bottom: 0; }
+    .step-num {
+      width: 22px;
+      height: 22px;
+      background: var(--blue);
+      color: #fff;
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .help-note {
+      background: #fffbea;
+      border-left: 3px solid var(--amber);
+      border-radius: 4px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #665500;
+      line-height: 1.8;
+    }
+    .help-qa { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+    .qa-item { background: #f9fafb; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .qa-q {
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--blue);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      user-select: none;
+    }
+    .qa-q .qa-arrow { margin-left: auto; transition: transform .2s; font-size: 12px; }
+    .qa-q.open .qa-arrow { transform: rotate(90deg); }
+    .qa-a {
+      display: none;
+      padding: 0 16px 14px;
+      font-size: 13px;
+      line-height: 1.9;
+      color: #444;
+    }
+    .qa-a.open { display: block; }
+
     /* ===== レスポンシブ ===== */
     @media (max-width: 860px) {
       .page-wrapper { grid-template-columns: 1fr; }
@@ -613,6 +743,7 @@
       .main-content { order: 1; }
       .banner-title { font-size: 20px; }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .help-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 520px) {
       .header-badge { display: none; }
@@ -726,6 +857,15 @@
 
   <!-- ===== メインコンテンツ ===== -->
   <main class="main-content">
+
+    <!-- タブバー -->
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('home', this)">🏠 ホーム</button>
+      <button class="tab-btn" onclick="switchTab('help', this)">📖 機能の説明と使い方</button>
+    </div>
+
+    <!-- ホームタブ -->
+    <div class="tab-panel active" id="tab-home">
 
     <!-- ウェルカムバナー -->
     <div class="welcome-banner">
@@ -912,6 +1052,226 @@
       </div>
     </div>
 
+    </div><!-- /tab-home -->
+
+    <!-- 使い方タブ -->
+    <div class="tab-panel" id="tab-help">
+
+      <!-- ヒーロー -->
+      <div class="help-hero">
+        <h2>📖 機能の説明と使い方</h2>
+        <p>このサイトの各機能をわかりやすくご説明します。初めての方もご安心ください。</p>
+      </div>
+
+      <!-- 機能カードグリッド -->
+      <div class="help-grid">
+
+        <!-- 行事予定 -->
+        <div class="help-item">
+          <div class="help-item-head"><span class="h-icon">📅</span>行事予定・集まり</div>
+          <div class="help-item-body">
+            同窓会や懇親会などの予定を一覧で確認できます。<br><br>
+            <div class="help-step">
+              <span class="step-num">1</span>
+              <span>「行事予定・集まり」セクションを見ます</span>
+            </div>
+            <div class="help-step">
+              <span class="step-num">2</span>
+              <span>日付・場所・種類（同窓会 / 茶話会 / オンライン）が色分けで表示されます</span>
+            </div>
+            <div class="help-step">
+              <span class="step-num">3</span>
+              <span>参加したい場合は幹事にご連絡ください</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 近況・メッセージ -->
+        <div class="help-item">
+          <div class="help-item-head"><span class="h-icon">📝</span>近況・メッセージ</div>
+          <div class="help-item-body">
+            同窓生のみなさんの近況を読んだり、自分のメッセージを投稿できます。<br><br>
+            <div class="help-step">
+              <span class="step-num">1</span>
+              <span>「近況・メッセージ」セクションで他の方の投稿を読めます</span>
+            </div>
+            <div class="help-step">
+              <span class="step-num">2</span>
+              <span>👍「いいね」ボタンで共感を伝えられます</span>
+            </div>
+            <div class="help-step">
+              <span class="step-num">3</span>
+              <span>自分のメッセージは「メッセージを書く」フォームから投稿できます</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 写真ギャラリー -->
+        <div class="help-item">
+          <div class="help-item-head"><span class="h-icon">🖼</span>思い出の写真</div>
+          <div class="help-item-body">
+            卒業式・修学旅行・同窓会などの写真を保管・閲覧できます。<br><br>
+            <div class="help-step">
+              <span class="step-num">1</span>
+              <span>「思い出の写真」セクションのサムネイルをクリックします</span>
+            </div>
+            <div class="help-step">
+              <span class="step-num">2</span>
+              <span>写真の詳細説明がポップアップで表示されます</span>
+            </div>
+            <div class="help-step">
+              <span class="step-num">3</span>
+              <span>写真を追加したい場合は幹事にご相談ください</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- メッセージ投稿 -->
+        <div class="help-item">
+          <div class="help-item-head"><span class="h-icon">✏️</span>メッセージを書く</div>
+          <div class="help-item-body">
+            近況や思い出をみんなに向けて書いて投稿できます。<br><br>
+            <div class="help-step">
+              <span class="step-num">1</span>
+              <span>ページ下部の「メッセージを書く」フォームを開きます</span>
+            </div>
+            <div class="help-step">
+              <span class="step-num">2</span>
+              <span>テキストを入力し「投稿する」ボタンを押します</span>
+            </div>
+            <div class="help-step">
+              <span class="step-num">3</span>
+              <span>Shift+Enterで改行、Enterキーで送信できます</span>
+            </div>
+            <br>
+            <div class="help-note">⚠️ 現在の投稿はご自身のブラウザ上でのみ表示されます。全員に共有される機能は今後追加予定です。</div>
+          </div>
+        </div>
+
+        <!-- クラスの年表 -->
+        <div class="help-item">
+          <div class="help-item-head"><span class="h-icon">📖</span>クラスの年表</div>
+          <div class="help-item-body">
+            入学から現在までの3Bクラスの歩みを時系列で確認できます。<br><br>
+            <div class="help-step">
+              <span class="step-num">1</span>
+              <span>「クラスの年表」セクションを下にスクロールします</span>
+            </div>
+            <div class="help-step">
+              <span class="step-num">2</span>
+              <span>昭和34年の入学から現在まで、主な出来事が並んでいます</span>
+            </div>
+            <div class="help-step">
+              <span class="step-num">3</span>
+              <span>追加してほしいエピソードがあれば幹事までお知らせください</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- お知らせティッカー -->
+        <div class="help-item">
+          <div class="help-item-head"><span class="h-icon">📢</span>お知らせ（ティッカー）</div>
+          <div class="help-item-body">
+            ページ上部に流れる横スクロールのお知らせバーです。<br><br>
+            <div class="help-step">
+              <span class="step-num">1</span>
+              <span>ページを開くと自動的に左から右へお知らせが流れます</span>
+            </div>
+            <div class="help-step">
+              <span class="step-num">2</span>
+              <span>同窓会の告知・重要連絡などが掲載されます</span>
+            </div>
+            <div class="help-step">
+              <span class="step-num">3</span>
+              <span>お知らせの内容変更は幹事が対応します</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /help-grid -->
+
+      <!-- セキュリティについて -->
+      <div class="card">
+        <div class="section-title">🔒 このサイトのセキュリティについて</div>
+        <div style="padding:16px 18px; font-size:14px; line-height:2;">
+          <p>このサイトは <strong>「URLを知っている方だけがアクセスできる」</strong> 仕組みになっています。</p>
+          <br>
+          <table style="width:100%; border-collapse:collapse; font-size:13px;">
+            <tr style="background:#f7f9fb;">
+              <td style="padding:10px 14px; border:1px solid var(--border); font-weight:700;">🔍 Google等の検索に出る？</td>
+              <td style="padding:10px 14px; border:1px solid var(--border);">出ません。検索エンジン除外の設定（noindex）を入れています。</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 14px; border:1px solid var(--border); font-weight:700;">🔗 URLを知らない人がアクセスできる？</td>
+              <td style="padding:10px 14px; border:1px solid var(--border);">事実上できません。URLが推測困難なため、偶然たどり着くことはありません。</td>
+            </tr>
+            <tr style="background:#f7f9fb;">
+              <td style="padding:10px 14px; border:1px solid var(--border); font-weight:700;">📤 SNSや他の人への共有は？</td>
+              <td style="padding:10px 14px; border:1px solid var(--border);">同窓生以外への共有はご遠慮ください。URLが広まると誰でも閲覧できてしまいます。</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 14px; border:1px solid var(--border); font-weight:700;">📱 スマートフォンでも使える？</td>
+              <td style="padding:10px 14px; border:1px solid var(--border);">はい。スマートフォン・タブレット・パソコンすべてに対応しています。</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- よくある質問 -->
+      <div class="card">
+        <div class="section-title">❓ よくある質問（Q&A）</div>
+        <div class="help-qa">
+          <div class="qa-item">
+            <div class="qa-q" onclick="toggleQA(this)">
+              <span>Q.</span> このページはどうやって開くの？
+              <span class="qa-arrow">▶</span>
+            </div>
+            <div class="qa-a">
+              幹事からお知らせしたURLをブラウザ（Safari・Chrome等）のアドレスバーに貼り付けて開いてください。ブックマーク（お気に入り）に登録しておくと便利です。
+            </div>
+          </div>
+          <div class="qa-item">
+            <div class="qa-q" onclick="toggleQA(this)">
+              <span>Q.</span> 投稿したメッセージは全員に見える？
+              <span class="qa-arrow">▶</span>
+            </div>
+            <div class="qa-a">
+              現在は「自分のブラウザ上で見える」デモ機能です。全員に共有する機能（サーバー保存）は今後追加を検討中です。内容を全員に伝えたい場合は幹事にお知らせください。
+            </div>
+          </div>
+          <div class="qa-item">
+            <div class="qa-q" onclick="toggleQA(this)">
+              <span>Q.</span> 写真や行事予定を追加・変更したい
+              <span class="qa-arrow">▶</span>
+            </div>
+            <div class="qa-a">
+              内容の追加・変更はページ管理者（幹事）が行います。追加してほしい写真や変更事項がある場合は幹事までご連絡ください。
+            </div>
+          </div>
+          <div class="qa-item">
+            <div class="qa-q" onclick="toggleQA(this)">
+              <span>Q.</span> 文字が小さくて読みにくい
+              <span class="qa-arrow">▶</span>
+            </div>
+            <div class="qa-a">
+              スマートフォンの場合：画面を2本指で広げると拡大できます。<br>
+              パソコンの場合：Ctrl（Mac は ⌘）＋「＋」キーで文字を大きくできます。
+            </div>
+          </div>
+          <div class="qa-item">
+            <div class="qa-q" onclick="toggleQA(this)">
+              <span>Q.</span> 同窓生以外に教えてもいい？
+              <span class="qa-arrow">▶</span>
+            </div>
+            <div class="qa-a">
+              同窓生（君商3B・昭和37年卒）の方限定のページです。URLを外部の方に教えたり、SNS等に掲載することはお控えください。
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /tab-help -->
+
   </main>
 </div>
 
@@ -938,6 +1298,22 @@
 <div class="toast" id="toast">✅ 投稿しました！</div>
 
 <script>
+  // タブ切り替え
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Q&Aアコーディオン
+  function toggleQA(el) {
+    const answer = el.nextElementSibling;
+    el.classList.toggle('open');
+    answer.classList.toggle('open');
+  }
+
   // スムーズスクロール
   function scrollTo(id) {
     const el = document.querySelector(id);
