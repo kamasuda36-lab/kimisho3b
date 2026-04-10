@@ -736,6 +736,41 @@
     }
     .qa-a.open { display: block; }
 
+    /* ===== いいね済み ===== */
+    .post-reaction { cursor: pointer; transition: color .15s, transform .1s; }
+    .post-reaction:hover { color: var(--blue); }
+    .post-reaction.liked { color: var(--blue); font-weight: 700; }
+    .post-reaction.liked:hover { color: var(--red); }
+    .post-reaction.demo-lock { cursor: default; opacity: .6; }
+
+    /* ===== 自分の投稿削除ボタン ===== */
+    .post-delete { margin-left: auto; background: none; border: none; color: #ccc; font-size: 13px; cursor: pointer; padding: 2px 6px; border-radius: 4px; line-height: 1; }
+    .post-delete:hover { color: var(--red); background: #fff5f5; }
+
+    /* ===== 名前入力 ===== */
+    .name-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; }
+    .name-row label { font-size: 13px; font-weight: 700; color: var(--sub); white-space: nowrap; }
+    .name-input { flex: 1; border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; font-family: inherit; font-size: 14px; outline: none; background: #f9fafb; transition: border .15s; }
+    .name-input:focus { border-color: var(--blue); background: #fff; }
+
+    /* ===== RSVP ===== */
+    .event-item { align-items: center; }
+    .rsvp-btn { margin-left: auto; flex-shrink: 0; background: none; border: 1px solid var(--border); border-radius: 20px; padding: 5px 14px; font-size: 12px; font-family: inherit; cursor: pointer; color: var(--sub); transition: all .15s; white-space: nowrap; }
+    .rsvp-btn:hover { border-color: var(--green); color: var(--green); }
+    .rsvp-btn.going { background: var(--green); color: #fff; border-color: var(--green); font-weight: 700; }
+
+    /* ===== 写真ギャラリー アップロード ===== */
+    .gallery-upload { cursor: pointer !important; opacity: 1 !important; border: 2px dashed var(--border) !important; transition: border-color .15s, background .15s !important; }
+    .gallery-upload:hover { border-color: var(--blue) !important; background: var(--blue-bg) !important; }
+
+    /* ===== Firebase設定バナー ===== */
+    .setup-banner { background: #fffbea; border: 1px solid #f39c12; border-radius: var(--radius); padding: 14px 18px; font-size: 13px; line-height: 1.8; display: none; }
+    .setup-banner.show { display: block; }
+    .setup-banner strong { color: #c0392b; }
+
+    /* ===== ローディング ===== */
+    .loading-msg { text-align: center; padding: 32px 16px; color: var(--sub); font-size: 14px; }
+
     /* ===== レスポンシブ ===== */
     @media (max-width: 860px) {
       .page-wrapper { grid-template-columns: 1fr; }
@@ -892,6 +927,7 @@
             <div class="event-title">令和7年 春の同窓会</div>
             <div class="event-place">📍 〇〇ホテル・大宴会場（君津市）</div>
           </div>
+          <button class="rsvp-btn" data-event="spring2026" onclick="toggleRSVP(this)">参加予定にする</button>
         </div>
         <div class="event-item">
           <div class="event-date">
@@ -904,6 +940,7 @@
             <div class="event-title">夏の茶話会（有志）</div>
             <div class="event-place">📍 〇〇公民館（参加自由）</div>
           </div>
+          <button class="rsvp-btn" data-event="summer2026" onclick="toggleRSVP(this)">参加予定にする</button>
         </div>
         <div class="event-item">
           <div class="event-date">
@@ -916,58 +953,22 @@
             <div class="event-title">オンライン懇親会</div>
             <div class="event-place">💻 Zoom（遠方の方もご参加ください）</div>
           </div>
+          <button class="rsvp-btn" data-event="online2026" onclick="toggleRSVP(this)">参加予定にする</button>
         </div>
       </div>
     </div>
 
     <!-- 近況ボード -->
     <div class="card" id="posts">
-      <div class="section-title">
-        📝 近況・メッセージ
+      <div class="section-title">📝 近況・メッセージ</div>
+      <!-- Firebase未設定バナー -->
+      <div class="setup-banner" id="setupBanner">
+        ⚠️ <strong>現在はこのブラウザのみで投稿が保存されます。</strong><br>
+        全員でメッセージを共有するには Firebase の設定が必要です。
+        設定方法は「機能の説明と使い方」タブをご覧ください。
       </div>
       <div class="posts-grid" id="postList">
-        <div class="post-item">
-          <div class="post-header">
-            <div class="post-avatar">🧑</div>
-            <div>
-              <div class="post-name">田中 〇〇さん</div>
-              <div class="post-date">2026年4月8日</div>
-            </div>
-          </div>
-          <div class="post-text">先日、孫が生まれました！もう4人目です。元気で賑やかな日々を過ごしています。みなさんにも早くご報告したくて。5月の同窓会、楽しみにしています！</div>
-          <div class="post-footer">
-            <span class="post-reaction">👍 いいね 8</span>
-            <span class="post-reaction">💬 返信 3</span>
-          </div>
-        </div>
-        <div class="post-item">
-          <div class="post-header">
-            <div class="post-avatar av2">👩</div>
-            <div>
-              <div class="post-name">鈴木 〇〇さん</div>
-              <div class="post-date">2026年3月25日</div>
-            </div>
-          </div>
-          <div class="post-text">春になって庭の桜が満開になりました！毎年この時期になると、在学中のことを思い出します。あの頃は本当に楽しかったですね。みなさんいかがお過ごしですか？</div>
-          <div class="post-footer">
-            <span class="post-reaction">👍 いいね 12</span>
-            <span class="post-reaction">💬 返信 5</span>
-          </div>
-        </div>
-        <div class="post-item">
-          <div class="post-header">
-            <div class="post-avatar av3">🧓</div>
-            <div>
-              <div class="post-name">佐藤 〇〇さん</div>
-              <div class="post-date">2026年3月10日</div>
-            </div>
-          </div>
-          <div class="post-text">先日、古いアルバムを整理していたら卒業式の写真が出てきました！みんな若くて懐かしかったです。デジタル化してここに載せたいと思っているので、しばらくお待ちください😊</div>
-          <div class="post-footer">
-            <span class="post-reaction">👍 いいね 15</span>
-            <span class="post-reaction">💬 返信 7</span>
-          </div>
-        </div>
+        <div class="loading-msg">⏳ 読み込み中…</div>
       </div>
     </div>
 
@@ -992,8 +993,9 @@
         <div class="gallery-item" onclick="openModal('令和6年 同窓会', '昨年開催した同窓会の集合写真。みなさんお元気そうでした！')">
           🥂<div class="g-label">令和6年 同窓会</div>
         </div>
-        <div class="gallery-item" style="background: linear-gradient(135deg, #eef2f7, #dde3ea); cursor: default; opacity:.6; font-size:14px; color:var(--sub);">
-          ＋<br><span style="font-size:12px">写真を追加</span>
+        <div class="gallery-item gallery-upload" id="galleryUploadItem" onclick="triggerUpload()" style="font-size:28px; color:var(--blue);">
+          ＋<div class="g-label" style="background:rgba(41,128,185,.7)">写真を追加</div>
+          <input type="file" id="photoInput" accept="image/*" onchange="handlePhotoUpload(this)" style="display:none">
         </div>
       </div>
     </div>
@@ -1044,7 +1046,11 @@
     <div class="card" id="write">
       <div class="section-title">✏️ 近況・メッセージを書く</div>
       <div class="post-form">
-        <textarea id="msgInput" placeholder="近況や思い出、ひと言メッセージをどうぞ…&#10;（このページを知っている同窓生の方のみ投稿できます）"></textarea>
+        <div class="name-row">
+          <label for="nameInput">👤 お名前</label>
+          <input type="text" id="nameInput" class="name-input" placeholder="山田 太郎" maxlength="20">
+        </div>
+        <textarea id="msgInput" placeholder="近況や思い出、ひと言メッセージをどうぞ…&#10;（Shift+Enterで改行、Enterで送信）"></textarea>
         <div class="form-footer">
           <span class="form-hint">🔒 URLを知る方のみ閲覧できます</span>
           <button class="btn-primary" onclick="postMessage()">投稿する</button>
@@ -1295,83 +1301,384 @@
 </div>
 
 <!-- ===== トースト ===== -->
-<div class="toast" id="toast">✅ 投稿しました！</div>
+<div class="toast" id="toast"></div>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
 <script>
-  // タブ切り替え
-  function switchTab(id, btn) {
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab-' + id).classList.add('active');
-    btn.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+// ============================================================
+// Firebase設定（管理者が設定してください）
+// 設定方法：firebase.google.com でプロジェクト作成後、
+// 下記の値を書き換えてください
+// ============================================================
+const FB_CONFIG = {
+  apiKey:            "",
+  authDomain:        "",
+  projectId:         "",
+  storageBucket:     "",
+  messagingSenderId: "",
+  appId:             ""
+};
+const FB_ENABLED = FB_CONFIG.apiKey.length > 0;
+let db = null;
+
+// ============================================================
+// デモ投稿（Firebase未設定時に表示するサンプル）
+// ============================================================
+const DEMO_POSTS = [
+  { id:'demo1', name:'田中 〇〇', text:'先日、孫が生まれました！もう4人目です。元気で賑やかな日々を過ごしています。みなさんにも早くご報告したくて。5月の同窓会、楽しみにしています！', likes:8,  color:'linear-gradient(135deg,#667eea,#764ba2)', emoji:'🧑', date:'2026年4月8日' },
+  { id:'demo2', name:'鈴木 〇〇', text:'春になって庭の桜が満開になりました！毎年この時期になると、在学中のことを思い出します。あの頃は本当に楽しかったですね。みなさんいかがお過ごしですか？',  likes:12, color:'linear-gradient(135deg,#f6d365,#fda085)', emoji:'👩', date:'2026年3月25日' },
+  { id:'demo3', name:'佐藤 〇〇', text:'先日、古いアルバムを整理していたら卒業式の写真が出てきました！みんな若くて懐かしかったです。デジタル化してここに載せたいと思っているので、しばらくお待ちください😊', likes:15, color:'linear-gradient(135deg,#84fab0,#8fd3f4)', emoji:'🧓', date:'2026年3月10日' }
+];
+
+// ============================================================
+// 初期化
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  // 保存済みの名前を復元
+  const savedName = localStorage.getItem('myName');
+  if (savedName) document.getElementById('nameInput').value = savedName;
+
+  // RSVPボタンの状態を復元
+  loadRSVP();
+
+  // アップロード済み写真を復元
+  loadUploadedPhotos();
+
+  if (FB_ENABLED) {
+    firebase.initializeApp(FB_CONFIG);
+    db = firebase.firestore();
+    listenMessages(); // リアルタイム同期
+  } else {
+    document.getElementById('setupBanner').classList.add('show');
+    loadLocalMessages(); // localStorage から読み込み
+  }
+});
+
+// ============================================================
+// メッセージ一覧（Firebase リアルタイム）
+// ============================================================
+function listenMessages() {
+  const list = document.getElementById('postList');
+  list.innerHTML = '<div class="loading-msg">⏳ 読み込み中…</div>';
+  db.collection('messages')
+    .orderBy('createdAt', 'desc')
+    .limit(50)
+    .onSnapshot(snap => {
+      const posts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      renderMessages(posts.length ? posts : DEMO_POSTS);
+    }, err => {
+      console.error(err);
+      renderMessages(DEMO_POSTS);
+    });
+}
+
+// ============================================================
+// メッセージ一覧（localStorage フォールバック）
+// ============================================================
+function loadLocalMessages() {
+  const local = JSON.parse(localStorage.getItem('localPosts') || '[]');
+  renderMessages([...local, ...DEMO_POSTS]);
+}
+
+// ============================================================
+// メッセージ描画
+// ============================================================
+function renderMessages(posts) {
+  const list = document.getElementById('postList');
+  if (!posts.length) {
+    list.innerHTML = '<div class="loading-msg">まだ投稿がありません。最初のメッセージを書いてみましょう！</div>';
+    return;
+  }
+  list.innerHTML = '';
+  posts.forEach(p => list.appendChild(buildPost(p)));
+}
+
+function buildPost(p) {
+  const div = document.createElement('div');
+  div.className = 'post-item';
+  div.id = 'post-' + p.id;
+
+  // 日付整形
+  let dateStr = p.date || '';
+  if (!dateStr && p.createdAt) {
+    const d = p.createdAt.toDate ? p.createdAt.toDate()
+              : new Date((p.createdAt.seconds || 0) * 1000);
+    dateStr = `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
   }
 
-  // Q&Aアコーディオン
-  function toggleQA(el) {
-    const answer = el.nextElementSibling;
-    el.classList.toggle('open');
-    answer.classList.toggle('open');
-  }
+  const myLikes  = JSON.parse(localStorage.getItem('myLikes') || '{}');
+  const isLiked  = !!myLikes[p.id];
+  const isDemo   = p.id.startsWith('demo');
+  const myName   = localStorage.getItem('myName') || '';
+  const canDelete = !isDemo && p.name === myName;
 
-  // スムーズスクロール
-  function scrollTo(id) {
-    const el = document.querySelector(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  // ギャラリーモーダル
-  function openModal(title, body) {
-    document.getElementById('modalTitle').textContent = title;
-    document.getElementById('modalBody').textContent = body;
-    document.getElementById('modal').classList.add('active');
-  }
-  function closeModal(e) {
-    if (!e || e.target === document.getElementById('modal') || e.currentTarget.classList.contains('modal-close')) {
-      document.getElementById('modal').classList.remove('active');
-    }
-  }
-
-  // メッセージ投稿（ローカルのみ・デモ）
-  function postMessage() {
-    const input = document.getElementById('msgInput');
-    const text = input.value.trim();
-    if (!text) { alert('メッセージを入力してください。'); return; }
-
-    const list = document.getElementById('postList');
-    const item = document.createElement('div');
-    item.className = 'post-item';
-    const now = new Date();
-    const dateStr = `${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日`;
-    item.innerHTML = `
-      <div class="post-header">
-        <div class="post-avatar" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">🙂</div>
-        <div>
-          <div class="post-name">あなた</div>
-          <div class="post-date">${dateStr}</div>
-        </div>
+  div.innerHTML = `
+    <div class="post-header">
+      <div class="post-avatar" style="background:${p.color||'linear-gradient(135deg,#667eea,#764ba2)'}">
+        ${p.emoji || '🙂'}
       </div>
-      <div class="post-text">${text.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}</div>
-      <div class="post-footer">
-        <span class="post-reaction">👍 いいね 0</span>
+      <div>
+        <div class="post-name">${esc(p.name || '名無しさん')}</div>
+        <div class="post-date">${dateStr}</div>
       </div>
-    `;
-    list.insertBefore(item, list.firstChild);
+      ${canDelete ? `<button class="post-delete" onclick="deletePost('${p.id}',this)" title="削除">✕</button>` : ''}
+    </div>
+    <div class="post-text">${esc(p.text || '').replace(/\n/g,'<br>')}</div>
+    <div class="post-footer">
+      <span class="post-reaction${isLiked?' liked':''}${isDemo?' demo-lock':''}"
+            onclick="${isDemo ? '' : `doLike('${p.id}',this)`}">
+        👍 いいね <span class="like-count">${p.likes || 0}</span>
+      </span>
+    </div>
+  `;
+  return div;
+}
+
+// ============================================================
+// メッセージ投稿
+// ============================================================
+function postMessage() {
+  const input   = document.getElementById('msgInput');
+  const nameEl  = document.getElementById('nameInput');
+  const text    = input.value.trim();
+  const name    = nameEl.value.trim();
+
+  if (!name) {
+    nameEl.style.borderColor = 'var(--red)';
+    nameEl.focus();
+    showToast('⚠️ お名前を入力してください');
+    return;
+  }
+  if (!text) {
+    input.focus();
+    showToast('⚠️ メッセージを入力してください');
+    return;
+  }
+  nameEl.style.borderColor = '';
+  localStorage.setItem('myName', name);
+
+  // 名前からアバターカラーを決定（同じ名前は同じ色）
+  const palette = [
+    'linear-gradient(135deg,#667eea,#764ba2)',
+    'linear-gradient(135deg,#f6d365,#fda085)',
+    'linear-gradient(135deg,#84fab0,#8fd3f4)',
+    'linear-gradient(135deg,#a18cd1,#fbc2eb)',
+    'linear-gradient(135deg,#43e97b,#38f9d7)',
+    'linear-gradient(135deg,#fa709a,#fee140)',
+  ];
+  const colorIdx = [...name].reduce((a,c) => a + c.charCodeAt(0), 0) % palette.length;
+  const data = { name, text, likes: 0, color: palette[colorIdx], emoji: '🙂' };
+
+  if (db) {
+    // Firebase に保存 → onSnapshot が自動で再描画
+    db.collection('messages').add({
+      ...data,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(() => {
+      input.value = '';
+      showToast('✅ 投稿しました！みんなに届きます');
+    }).catch(() => showToast('❌ 投稿に失敗しました。もう一度お試しください'));
+  } else {
+    // localStorage に保存
+    const id    = 'local_' + Date.now();
+    const local = JSON.parse(localStorage.getItem('localPosts') || '[]');
+    const now   = new Date();
+    local.unshift({ id, ...data, date: `${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日` });
+    localStorage.setItem('localPosts', JSON.stringify(local.slice(0, 50)));
+    loadLocalMessages();
     input.value = '';
-
-    // トースト表示
-    const toast = document.getElementById('toast');
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 3000);
+    showToast('✅ 投稿しました！（このブラウザのみ保存）');
   }
+}
 
-  // Enterキーでの誤送信防止（Shift+Enterで改行）
-  document.getElementById('msgInput').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      postMessage();
+// ============================================================
+// 投稿削除（自分の投稿のみ）
+// ============================================================
+function deletePost(id, btn) {
+  if (!confirm('このメッセージを削除しますか？')) return;
+  const el = btn.closest('.post-item');
+  el.style.opacity = '0.4';
+  if (db) {
+    db.collection('messages').doc(id).delete()
+      .then(() => el.remove())
+      .catch(() => { el.style.opacity = '1'; showToast('❌ 削除に失敗しました'); });
+  } else {
+    const local = JSON.parse(localStorage.getItem('localPosts') || '[]').filter(p => p.id !== id);
+    localStorage.setItem('localPosts', JSON.stringify(local));
+    el.remove();
+  }
+}
+
+// ============================================================
+// いいね
+// ============================================================
+function doLike(id, el) {
+  const myLikes  = JSON.parse(localStorage.getItem('myLikes') || '{}');
+  const wasLiked = !!myLikes[id];
+  const delta    = wasLiked ? -1 : 1;
+
+  // ローカル状態を更新
+  if (wasLiked) delete myLikes[id]; else myLikes[id] = true;
+  localStorage.setItem('myLikes', JSON.stringify(myLikes));
+
+  el.classList.toggle('liked', !wasLiked);
+  const countEl = el.querySelector('.like-count');
+  if (countEl) countEl.textContent = Math.max(0, parseInt(countEl.textContent || '0') + delta);
+
+  // Firebase or localStorage を更新
+  if (db) {
+    db.collection('messages').doc(id).update({
+      likes: firebase.firestore.FieldValue.increment(delta)
+    }).catch(console.error);
+  } else {
+    const local = JSON.parse(localStorage.getItem('localPosts') || '[]');
+    const post  = local.find(x => x.id === id);
+    if (post) { post.likes = Math.max(0, (post.likes || 0) + delta); localStorage.setItem('localPosts', JSON.stringify(local)); }
+  }
+}
+
+// ============================================================
+// 行事予定 RSVP
+// ============================================================
+function loadRSVP() {
+  const saved = JSON.parse(localStorage.getItem('myRSVP') || '{}');
+  document.querySelectorAll('.rsvp-btn').forEach(btn => {
+    if (saved[btn.dataset.event]) {
+      btn.classList.add('going');
+      btn.textContent = '✅ 参加予定';
     }
   });
+}
+
+function toggleRSVP(btn) {
+  const eid  = btn.dataset.event;
+  const saved = JSON.parse(localStorage.getItem('myRSVP') || '{}');
+  if (saved[eid]) {
+    delete saved[eid];
+    btn.classList.remove('going');
+    btn.textContent = '参加予定にする';
+  } else {
+    saved[eid] = true;
+    btn.classList.add('going');
+    btn.textContent = '✅ 参加予定';
+    showToast('✅ 参加予定に登録しました！');
+  }
+  localStorage.setItem('myRSVP', JSON.stringify(saved));
+}
+
+// ============================================================
+// 写真アップロード（localStorage に base64 保存）
+// ============================================================
+function triggerUpload() {
+  document.getElementById('photoInput').click();
+}
+
+function handlePhotoUpload(input) {
+  const file = input.files[0];
+  if (!file) return;
+  if (file.size > 3 * 1024 * 1024) { showToast('⚠️ 3MB以下の写真を選択してください'); return; }
+
+  const reader = new FileReader();
+  reader.onload = e => {
+    const src   = e.target.result;
+    const label = prompt('写真のタイトルを入力してください', file.name.replace(/\.[^.]+$/, ''));
+    if (label === null) return;
+    const title = label.trim() || file.name;
+
+    addPhotoToGrid(src, title);
+
+    const photos = JSON.parse(localStorage.getItem('uploadedPhotos') || '[]');
+    photos.push({ src, label: title });
+    localStorage.setItem('uploadedPhotos', JSON.stringify(photos));
+    showToast('📸 写真を追加しました！');
+  };
+  reader.readAsDataURL(file);
+  input.value = '';
+}
+
+function addPhotoToGrid(src, label) {
+  const grid       = document.querySelector('.gallery-grid');
+  const uploadItem = document.getElementById('galleryUploadItem');
+  const div = document.createElement('div');
+  div.className = 'gallery-item';
+  div.onclick   = () => openPhotoModal(src, label);
+  div.innerHTML = `
+    <img src="${src}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+    <div class="g-label">${esc(label)}</div>
+  `;
+  grid.insertBefore(div, uploadItem);
+}
+
+function loadUploadedPhotos() {
+  JSON.parse(localStorage.getItem('uploadedPhotos') || '[]')
+    .forEach(p => addPhotoToGrid(p.src, p.label));
+}
+
+function openPhotoModal(src, label) {
+  document.getElementById('modalTitle').textContent = label;
+  document.getElementById('modalBody').innerHTML =
+    `<img src="${src}" style="width:100%;border-radius:8px;max-height:420px;object-fit:contain;">`;
+  document.getElementById('modal').classList.add('active');
+}
+
+// ============================================================
+// ユーティリティ
+// ============================================================
+function esc(str) {
+  return String(str)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ============================================================
+// ナビ・UI
+// ============================================================
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleQA(el) {
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('open');
+}
+
+function scrollTo(id) {
+  const el = document.querySelector(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function openModal(title, body) {
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalBody').textContent  = body;
+  document.getElementById('modal').classList.add('active');
+}
+
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('modal')
+         || e.currentTarget.classList.contains('modal-close')) {
+    document.getElementById('modal').classList.remove('active');
+  }
+}
+
+// Enterキー送信（Shift+Enterで改行）
+document.getElementById('msgInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); postMessage(); }
+});
 </script>
 </body>
 </html>
