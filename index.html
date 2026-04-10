@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>君商3B同窓会 - 昭和37年（1962年）卒業</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    /* ===== リセット & ベース ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #2d3a4f;
+      --blue:    #2980b9;
+      --blue-lt: #3498db;
+      --blue-bg: #eaf4fb;
+      --amber:   #e67e22;
+      --amber-bg:#fef5e7;
+      --green:   #27ae60;
+      --red:     #e74c3c;
+      --bg:      #f0f4f8;
+      --card:    #ffffff;
+      --text:    #2c3e50;
+      --sub:     #7f8c8d;
+      --border:  #dde3ea;
+      --radius:  10px;
+      --shadow:  0 2px 12px rgba(0,0,0,.08);
+    }
+
+    body {
+      font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ===== ヘッダー ===== */
+    .site-header {
+      background: var(--navy);
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,.3);
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .site-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 900;
+      color: #fff;
+      white-space: nowrap;
+    }
+    .site-logo .logo-icon {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, var(--blue), var(--blue-lt));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    .site-logo .logo-sub {
+      font-size: 11px;
+      font-weight: 400;
+      opacity: .75;
+      display: block;
+      line-height: 1.2;
+    }
+    .header-spacer { flex: 1; }
+    .header-badge {
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      color: rgba(255,255,255,.9);
+      white-space: nowrap;
+    }
+
+    /* ===== お知らせティッカー ===== */
+    .ticker-bar {
+      background: #e8edf3;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      height: 36px;
+      display: flex;
+      align-items: center;
+    }
+    .ticker-label {
+      background: var(--blue);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 0 14px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .ticker-track {
+      overflow: hidden;
+      flex: 1;
+    }
+    .ticker-content {
+      display: inline-flex;
+      gap: 60px;
+      animation: ticker 30s linear infinite;
+      padding-left: 20px;
+      font-size: 13px;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ===== メインレイアウト ===== */
+    .page-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 20px;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* ===== サイドバー ===== */
+    .sidebar { display: flex; flex-direction: column; gap: 20px; }
+
+    /* ===== カード共通 ===== */
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .card-header {
+      background: #f7f9fb;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 18px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-header .icon { font-size: 16px; }
+    .card-body { padding: 18px; }
+
+    /* ===== クラス情報カード ===== */
+    .class-card {
+      text-align: center;
+      padding: 28px 20px 20px;
+    }
+    .class-emblem {
+      width: 88px;
+      height: 88px;
+      background: linear-gradient(135deg, #2d3a4f, #3d5a80);
+      border-radius: 50%;
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      box-shadow: 0 4px 16px rgba(45,58,79,.3);
+    }
+    .class-name {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .class-year {
+      font-size: 13px;
+      color: var(--sub);
+      margin-bottom: 16px;
+    }
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+      margin-top: 4px;
+    }
+    .stat-item {
+      flex: 1;
+      text-align: center;
+      padding: 8px 0;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--blue);
+      display: block;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: var(--sub);
+    }
+
+    /* ===== クイックリンク ===== */
+    .quick-links { display: flex; flex-direction: column; gap: 1px; }
+    .quick-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      background: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background .15s;
+      text-align: left;
+      width: 100%;
+      border-bottom: 1px solid var(--border);
+    }
+    .quick-link:last-child { border-bottom: none; }
+    .quick-link:hover { background: var(--blue-bg); color: var(--blue); }
+    .quick-link .ql-icon { font-size: 18px; width: 24px; text-align: center; }
+    .quick-link .ql-arrow { margin-left: auto; color: var(--border); font-size: 12px; }
+
+    /* ===== メインコンテンツ ===== */
+    .main-content { display: flex; flex-direction: column; gap: 20px; }
+
+    /* ===== ウェルカムバナー ===== */
+    .welcome-banner {
+      background: linear-gradient(135deg, #2d3a4f 0%, #3d5a80 100%);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .welcome-banner::before {
+      content: '🎓';
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 80px;
+      opacity: .15;
+    }
+    .banner-label {
+      background: rgba(255,255,255,.2);
+      border-radius: 12px;
+      padding: 3px 12px;
+      font-size: 11px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+    .banner-title {
+      font-size: 26px;
+      font-weight: 900;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .banner-sub {
+      font-size: 14px;
+      opacity: .85;
+      margin-bottom: 18px;
+    }
+    .banner-btn {
+      background: rgba(255,255,255,.2);
+      border: 1px solid rgba(255,255,255,.5);
+      color: #fff;
+      border-radius: 6px;
+      padding: 8px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .banner-btn:hover { background: rgba(255,255,255,.35); }
+
+    /* ===== セクションタイトル ===== */
+    .section-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 18px;
+      background: #f7f9fb;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-title::before {
+      content: '';
+      display: block;
+      width: 4px;
+      height: 16px;
+      background: var(--blue);
+      border-radius: 2px;
+    }
+    .section-link {
+      margin-left: auto;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--blue);
+    }
+
+    /* ===== 行事予定リスト ===== */
+    .event-list { padding: 8px 0; }
+    .event-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      transition: background .15s;
+    }
+    .event-item:last-child { border-bottom: none; }
+    .event-item:hover { background: var(--blue-bg); cursor: pointer; }
+    .event-date {
+      text-align: center;
+      min-width: 48px;
+      flex-shrink: 0;
+    }
+    .event-month { font-size: 11px; color: var(--sub); }
+    .event-day {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--blue);
+      line-height: 1;
+    }
+    .event-weekday { font-size: 11px; color: var(--sub); }
+    .event-body { flex: 1; }
+    .event-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 1px 8px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+    }
+    .tag-reunion { background: #fef5e7; color: var(--amber); }
+    .tag-casual  { background: var(--blue-bg); color: var(--blue); }
+    .tag-online  { background: #eafaf1; color: var(--green); }
+    .event-title { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+    .event-place { font-size: 12px; color: var(--sub); }
+
+    /* ===== 近況ボード ===== */
+    .posts-grid {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .post-item {
+      background: #f9fafb;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      position: relative;
+    }
+    .post-item:hover { border-color: var(--blue); background: var(--blue-bg); }
+    .post-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .post-avatar {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .post-avatar.av2 { background: linear-gradient(135deg, #f6d365, #fda085); }
+    .post-avatar.av3 { background: linear-gradient(135deg, #84fab0, #8fd3f4); }
+    .post-name { font-size: 14px; font-weight: 700; }
+    .post-date { font-size: 12px; color: var(--sub); }
+    .post-text { font-size: 13px; line-height: 1.7; color: #444; }
+    .post-footer {
+      margin-top: 8px;
+      display: flex;
+      gap: 16px;
+    }
+    .post-reaction {
+      font-size: 12px;
+      color: var(--sub);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+    .post-reaction:hover { color: var(--blue); }
+
+    /* ===== 写真ギャラリー ===== */
+    .gallery-grid {
+      padding: 16px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .gallery-item {
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, #e8edf3 0%, #cdd5e0 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      cursor: pointer;
+      transition: transform .15s, box-shadow .15s;
+      position: relative;
+      overflow: hidden;
+    }
+    .gallery-item:hover { transform: scale(1.03); box-shadow: 0 4px 16px rgba(0,0,0,.15); }
+    .gallery-item .g-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(0,0,0,.55);
+      color: #fff;
+      font-size: 11px;
+      padding: 4px 8px;
+      text-align: center;
+    }
+
+    /* ===== メッセージ投稿フォーム ===== */
+    .post-form { padding: 16px; }
+    .post-form textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      font-family: inherit;
+      font-size: 14px;
+      resize: vertical;
+      min-height: 90px;
+      transition: border .15s;
+      outline: none;
+      background: #f9fafb;
+    }
+    .post-form textarea:focus {
+      border-color: var(--blue);
+      background: #fff;
+    }
+    .form-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+    }
+    .form-hint { font-size: 12px; color: var(--sub); }
+    .btn-primary {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 9px 22px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .15s;
+      font-family: inherit;
+    }
+    .btn-primary:hover { background: #1a6fa8; }
+    .btn-outline {
+      background: transparent;
+      color: var(--blue);
+      border: 1px solid var(--blue);
+      border-radius: 6px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .15s;
+      font-family: inherit;
+    }
+    .btn-outline:hover { background: var(--blue); color: #fff; }
+
+    /* ===== 年表セクション ===== */
+    .timeline { padding: 16px 18px; }
+    .tl-item {
+      display: flex;
+      gap: 16px;
+      padding-bottom: 20px;
+      position: relative;
+    }
+    .tl-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 19px;
+      top: 36px;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+    .tl-dot {
+      width: 40px;
+      height: 40px;
+      background: var(--blue-bg);
+      border: 2px solid var(--blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .tl-year { font-size: 13px; font-weight: 700; color: var(--blue); margin-bottom: 2px; }
+    .tl-text { font-size: 14px; }
+
+    /* ===== フッター ===== */
+    .site-footer {
+      background: var(--navy);
+      color: rgba(255,255,255,.7);
+      text-align: center;
+      padding: 28px 20px;
+      margin-top: 40px;
+      font-size: 13px;
+    }
+    .site-footer p + p { margin-top: 6px; }
+    .footer-lock {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,.1);
+      border-radius: 12px;
+      padding: 4px 14px;
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    /* ===== 画像モーダル ===== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.7);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-box {
+      background: #fff;
+      border-radius: 12px;
+      padding: 28px;
+      max-width: 520px;
+      width: 90%;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 12px; right: 16px;
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: var(--sub);
+    }
+    .modal-title { font-size: 18px; font-weight: 700; margin-bottom: 14px; }
+    .modal-body { font-size: 14px; line-height: 1.8; color: #555; }
+
+    /* ===== 投稿完了トースト ===== */
+    .toast {
+      position: fixed;
+      bottom: 24px; right: 24px;
+      background: var(--green);
+      color: #fff;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 4px 16px rgba(0,0,0,.2);
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all .3s ease;
+      z-index: 300;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    /* ===== レスポンシブ ===== */
+    @media (max-width: 860px) {
+      .page-wrapper { grid-template-columns: 1fr; }
+      .sidebar { order: 2; }
+      .main-content { order: 1; }
+      .banner-title { font-size: 20px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 520px) {
+      .header-badge { display: none; }
+      .site-logo { font-size: 16px; }
+      .site-logo .logo-sub { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== ヘッダー ===== -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="site-logo">
+      <div class="logo-icon">🎓</div>
+      <div>
+        君商3B同窓会
+        <span class="logo-sub">昭和37年（1962年）卒業</span>
+      </div>
+    </div>
+    <div class="header-spacer"></div>
+    <div class="header-badge">🔒 URLを知る人のみ閲覧可</div>
+  </div>
+</header>
+
+<!-- ===== ティッカー ===== -->
+<div class="ticker-bar">
+  <div class="ticker-label">📢 お知らせ</div>
+  <div class="ticker-track">
+    <div class="ticker-content" id="ticker">
+      <span>🎉 次回同窓会の日程が決まりました！詳細は行事予定をご確認ください</span>
+      <span>📸 卒業アルバムのデジタル化プロジェクト進行中です</span>
+      <span>✉ 住所変更・連絡先変更の方は幹事までお知らせください</span>
+      <span>🌸 令和7年・春の懇親会は5月を予定しています</span>
+      <!-- ループ用 -->
+      <span>🎉 次回同窓会の日程が決まりました！詳細は行事予定をご確認ください</span>
+      <span>📸 卒業アルバムのデジタル化プロジェクト進行中です</span>
+      <span>✉ 住所変更・連絡先変更の方は幹事までお知らせください</span>
+      <span>🌸 令和7年・春の懇親会は5月を予定しています</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== メインレイアウト ===== -->
+<div class="page-wrapper">
+
+  <!-- ===== サイドバー ===== -->
+  <aside class="sidebar">
+
+    <!-- クラス情報カード -->
+    <div class="card">
+      <div class="class-card">
+        <div class="class-emblem">🏫</div>
+        <div class="class-name">君商 第3学年B組</div>
+        <div class="class-year">昭和37年（1962年）3月 卒業</div>
+        <div class="stats-row">
+          <div class="stat-item">
+            <span class="stat-num">38</span>
+            <span class="stat-label">卒業生</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">62</span>
+            <span class="stat-label">年前</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">80</span>
+            <span class="stat-label">歳前後</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- クイックリンク -->
+    <div class="card">
+      <div class="card-header"><span class="icon">🔗</span>メニュー</div>
+      <div class="quick-links">
+        <button class="quick-link" onclick="scrollTo('#events')">
+          <span class="ql-icon">📅</span>行事予定・集まり
+          <span class="ql-arrow">▶</span>
+        </button>
+        <button class="quick-link" onclick="scrollTo('#posts')">
+          <span class="ql-icon">📝</span>近況・メッセージ
+          <span class="ql-arrow">▶</span>
+        </button>
+        <button class="quick-link" onclick="scrollTo('#gallery')">
+          <span class="ql-icon">🖼</span>思い出の写真
+          <span class="ql-arrow">▶</span>
+        </button>
+        <button class="quick-link" onclick="scrollTo('#timeline')">
+          <span class="ql-icon">📖</span>クラスの年表
+          <span class="ql-arrow">▶</span>
+        </button>
+        <button class="quick-link" onclick="scrollTo('#write')">
+          <span class="ql-icon">✏️</span>メッセージを書く
+          <span class="ql-arrow">▶</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 幹事情報 -->
+    <div class="card">
+      <div class="card-header"><span class="icon">👤</span>幹事・連絡先</div>
+      <div class="card-body" style="font-size:13px; line-height:1.9;">
+        <strong>幹事：〇〇 〇〇</strong><br>
+        📞 （このページを通じてご連絡ください）<br><br>
+        <span style="color:var(--sub)">このサイトはURLを知っている方のみ閲覧できます。<br>外部への共有はご遠慮ください。</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ===== メインコンテンツ ===== -->
+  <main class="main-content">
+
+    <!-- ウェルカムバナー -->
+    <div class="welcome-banner">
+      <div class="banner-label">君商3B 同窓会サイト</div>
+      <div class="banner-title">懐かしい仲間たちと、<br>また繋がろう</div>
+      <div class="banner-sub">昭和37年に共に卒業した君商3Bのためのページです。<br>近況・写真・思い出をみんなで共有しましょう。</div>
+      <button class="banner-btn" onclick="scrollTo('#write')">✉ メッセージを書く</button>
+    </div>
+
+    <!-- 行事予定 -->
+    <div class="card" id="events">
+      <div class="section-title">
+        📅 行事予定・集まり
+      </div>
+      <div class="event-list">
+        <div class="event-item">
+          <div class="event-date">
+            <div class="event-month">5月</div>
+            <div class="event-day">17</div>
+            <div class="event-weekday">土</div>
+          </div>
+          <div class="event-body">
+            <span class="event-tag tag-reunion">同窓会</span>
+            <div class="event-title">令和7年 春の同窓会</div>
+            <div class="event-place">📍 〇〇ホテル・大宴会場（君津市）</div>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">
+            <div class="event-month">7月</div>
+            <div class="event-day">5</div>
+            <div class="event-weekday">土</div>
+          </div>
+          <div class="event-body">
+            <span class="event-tag tag-casual">気軽な集まり</span>
+            <div class="event-title">夏の茶話会（有志）</div>
+            <div class="event-place">📍 〇〇公民館（参加自由）</div>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">
+            <div class="event-month">11月</div>
+            <div class="event-day">22</div>
+            <div class="event-weekday">土</div>
+          </div>
+          <div class="event-body">
+            <span class="event-tag tag-online">オンライン</span>
+            <div class="event-title">オンライン懇親会</div>
+            <div class="event-place">💻 Zoom（遠方の方もご参加ください）</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 近況ボード -->
+    <div class="card" id="posts">
+      <div class="section-title">
+        📝 近況・メッセージ
+      </div>
+      <div class="posts-grid" id="postList">
+        <div class="post-item">
+          <div class="post-header">
+            <div class="post-avatar">🧑</div>
+            <div>
+              <div class="post-name">田中 〇〇さん</div>
+              <div class="post-date">2026年4月8日</div>
+            </div>
+          </div>
+          <div class="post-text">先日、孫が生まれました！もう4人目です。元気で賑やかな日々を過ごしています。みなさんにも早くご報告したくて。5月の同窓会、楽しみにしています！</div>
+          <div class="post-footer">
+            <span class="post-reaction">👍 いいね 8</span>
+            <span class="post-reaction">💬 返信 3</span>
+          </div>
+        </div>
+        <div class="post-item">
+          <div class="post-header">
+            <div class="post-avatar av2">👩</div>
+            <div>
+              <div class="post-name">鈴木 〇〇さん</div>
+              <div class="post-date">2026年3月25日</div>
+            </div>
+          </div>
+          <div class="post-text">春になって庭の桜が満開になりました！毎年この時期になると、在学中のことを思い出します。あの頃は本当に楽しかったですね。みなさんいかがお過ごしですか？</div>
+          <div class="post-footer">
+            <span class="post-reaction">👍 いいね 12</span>
+            <span class="post-reaction">💬 返信 5</span>
+          </div>
+        </div>
+        <div class="post-item">
+          <div class="post-header">
+            <div class="post-avatar av3">🧓</div>
+            <div>
+              <div class="post-name">佐藤 〇〇さん</div>
+              <div class="post-date">2026年3月10日</div>
+            </div>
+          </div>
+          <div class="post-text">先日、古いアルバムを整理していたら卒業式の写真が出てきました！みんな若くて懐かしかったです。デジタル化してここに載せたいと思っているので、しばらくお待ちください😊</div>
+          <div class="post-footer">
+            <span class="post-reaction">👍 いいね 15</span>
+            <span class="post-reaction">💬 返信 7</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 思い出の写真 -->
+    <div class="card" id="gallery">
+      <div class="section-title">
+        🖼 思い出の写真
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openModal('卒業式（昭和37年3月）', '昭和37年3月、君津商業高校の卒業式。3年B組のみなさんの晴れ姿。')">
+          🎓<div class="g-label">卒業式（1962年）</div>
+        </div>
+        <div class="gallery-item" onclick="openModal('修学旅行', '2年生の修学旅行。みんなで京都・奈良を訪れた思い出の旅。')">
+          🚌<div class="g-label">修学旅行</div>
+        </div>
+        <div class="gallery-item" onclick="openModal('体育祭', '汗と笑顔が輝いた体育祭の一コマ。')">
+          🏃<div class="g-label">体育祭</div>
+        </div>
+        <div class="gallery-item" onclick="openModal('文化祭', '力を合わせて作り上げた文化祭の展示。')">
+          🎨<div class="g-label">文化祭</div>
+        </div>
+        <div class="gallery-item" onclick="openModal('令和6年 同窓会', '昨年開催した同窓会の集合写真。みなさんお元気そうでした！')">
+          🥂<div class="g-label">令和6年 同窓会</div>
+        </div>
+        <div class="gallery-item" style="background: linear-gradient(135deg, #eef2f7, #dde3ea); cursor: default; opacity:.6; font-size:14px; color:var(--sub);">
+          ＋<br><span style="font-size:12px">写真を追加</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- クラスの年表 -->
+    <div class="card" id="timeline">
+      <div class="section-title">📖 クラスの年表</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot">🏫</div>
+          <div>
+            <div class="tl-year">昭和34年（1959年）</div>
+            <div class="tl-text">君津商業高校 入学。3年B組のはじまり。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">✈</div>
+          <div>
+            <div class="tl-year">昭和35年（1960年）</div>
+            <div class="tl-text">2年生。修学旅行（京都・奈良）。文化祭・体育祭に燃えた一年。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">📚</div>
+          <div>
+            <div class="tl-year">昭和36年（1961年）</div>
+            <div class="tl-text">3年生。受験・就職活動。クラス全員で乗り越えた最終学年。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">🎓</div>
+          <div>
+            <div class="tl-year">昭和37年（1962年）3月</div>
+            <div class="tl-text">卒業式。38名が巣立つ。それぞれの道へ。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">🎉</div>
+          <div>
+            <div class="tl-year">現在（令和7年）</div>
+            <div class="tl-text">卒業から約63年。今もこうして繋がっています。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- メッセージ投稿フォーム -->
+    <div class="card" id="write">
+      <div class="section-title">✏️ 近況・メッセージを書く</div>
+      <div class="post-form">
+        <textarea id="msgInput" placeholder="近況や思い出、ひと言メッセージをどうぞ…&#10;（このページを知っている同窓生の方のみ投稿できます）"></textarea>
+        <div class="form-footer">
+          <span class="form-hint">🔒 URLを知る方のみ閲覧できます</span>
+          <button class="btn-primary" onclick="postMessage()">投稿する</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ===== フッター ===== -->
+<footer class="site-footer">
+  <div class="footer-lock">🔒 このサイトはURLを知る方のみ閲覧できます</div>
+  <p><strong>君商3B同窓会</strong>　昭和37年（1962年）卒業</p>
+  <p style="margin-top:8px; font-size:12px">外部への公開・SNSへの掲載はご遠慮ください</p>
+</footer>
+
+<!-- ===== モーダル ===== -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="modal-body" id="modalBody"></div>
+    <div style="margin-top:18px; text-align:right;">
+      <button class="btn-outline" onclick="closeModal()">閉じる</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== トースト ===== -->
+<div class="toast" id="toast">✅ 投稿しました！</div>
+
+<script>
+  // スムーズスクロール
+  function scrollTo(id) {
+    const el = document.querySelector(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // ギャラリーモーダル
+  function openModal(title, body) {
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalBody').textContent = body;
+    document.getElementById('modal').classList.add('active');
+  }
+  function closeModal(e) {
+    if (!e || e.target === document.getElementById('modal') || e.currentTarget.classList.contains('modal-close')) {
+      document.getElementById('modal').classList.remove('active');
+    }
+  }
+
+  // メッセージ投稿（ローカルのみ・デモ）
+  function postMessage() {
+    const input = document.getElementById('msgInput');
+    const text = input.value.trim();
+    if (!text) { alert('メッセージを入力してください。'); return; }
+
+    const list = document.getElementById('postList');
+    const item = document.createElement('div');
+    item.className = 'post-item';
+    const now = new Date();
+    const dateStr = `${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日`;
+    item.innerHTML = `
+      <div class="post-header">
+        <div class="post-avatar" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">🙂</div>
+        <div>
+          <div class="post-name">あなた</div>
+          <div class="post-date">${dateStr}</div>
+        </div>
+      </div>
+      <div class="post-text">${text.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}</div>
+      <div class="post-footer">
+        <span class="post-reaction">👍 いいね 0</span>
+      </div>
+    `;
+    list.insertBefore(item, list.firstChild);
+    input.value = '';
+
+    // トースト表示
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+  }
+
+  // Enterキーでの誤送信防止（Shift+Enterで改行）
+  document.getElementById('msgInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      postMessage();
+    }
+  });
+</script>
+</body>
+</html>
