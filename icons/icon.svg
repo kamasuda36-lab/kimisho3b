@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <!-- 背景グラデーション：深いネイビー -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#1a2a4a"/>
+      <stop offset="100%" stop-color="#2c4a7c"/>
+    </linearGradient>
+    <!-- ゴールドグラデーション -->
+    <linearGradient id="gold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#f5d060"/>
+      <stop offset="100%" stop-color="#d4a017"/>
+    </linearGradient>
+    <!-- ブルーグラデーション（帽子本体） -->
+    <linearGradient id="capBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#3a9fd6"/>
+      <stop offset="100%" stop-color="#1e6ca8"/>
+    </linearGradient>
+    <!-- 光沢 -->
+    <radialGradient id="shine" cx="35%" cy="30%" r="50%">
+      <stop offset="0%"   stop-color="white" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="white" stop-opacity="0"/>
+    </radialGradient>
+    <!-- ドロップシャドウ -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+    <filter id="textShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- 角丸背景 -->
+  <rect width="512" height="512" rx="108" fill="url(#bg)"/>
+  <!-- 光沢オーバーレイ -->
+  <rect width="512" height="512" rx="108" fill="url(#shine)"/>
+
+  <!-- ===== 卒業帽（角帽）===== -->
+  <!-- 帽子のボード（菱形）-->
+  <polygon
+    points="256,105 410,185 256,265 102,185"
+    fill="url(#gold)"
+    filter="url(#shadow)"
+  />
+  <!-- ボード上面の光沢ライン -->
+  <polygon
+    points="256,105 410,185 256,155 102,185"
+    fill="white" opacity="0.08"
+  />
+
+  <!-- 帽子の側面（台形）-->
+  <path
+    d="M148,200 L148,275 Q148,295 168,305 L248,342 L248,272 L102,185 Z"
+    fill="url(#capBlue)" opacity="0.9"
+  />
+  <path
+    d="M364,200 L364,275 Q364,295 344,305 L264,342 L264,272 L410,185 Z"
+    fill="url(#capBlue)" opacity="0.75"
+  />
+  <!-- 帽子底面 -->
+  <path
+    d="M148,275 Q148,295 168,305 L256,350 L344,305 Q364,295 364,275 L364,200 L256,265 Z"
+    fill="#1e5a8a"
+  />
+
+  <!-- タッセル紐（右から垂れ下がる） -->
+  <line x1="410" y1="185" x2="410" y2="300" stroke="url(#gold)" stroke-width="6" stroke-linecap="round"/>
+  <!-- タッセル飾り -->
+  <circle cx="410" cy="300" r="10" fill="url(#gold)" filter="url(#shadow)"/>
+  <line x1="404" y1="310" x2="398" y2="340" stroke="url(#gold)" stroke-width="4" stroke-linecap="round"/>
+  <line x1="410" y1="312" x2="410" y2="344" stroke="url(#gold)" stroke-width="4" stroke-linecap="round"/>
+  <line x1="416" y1="310" x2="422" y2="340" stroke="url(#gold)" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- ===== "3B" テキスト ===== -->
+  <text
+    x="256" y="455"
+    text-anchor="middle"
+    font-family="'Arial Black', 'Helvetica Neue', Arial, sans-serif"
+    font-size="148"
+    font-weight="900"
+    letter-spacing="-4"
+    fill="white"
+    filter="url(#textShadow)"
+    opacity="0.97"
+  >3B</text>
+
+  <!-- テキスト下のゴールドライン -->
+  <rect x="136" y="466" width="240" height="5" rx="2.5" fill="url(#gold)" opacity="0.7"/>
+</svg>
